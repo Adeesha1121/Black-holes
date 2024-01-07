@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unveiling the Mysteries of Black Holes</title>
 
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -49,7 +50,7 @@
     
         header {
             background-color: #003366; /* Dark blue for header */
-            padding: 60px;
+            padding: 40px;
             text-align: center;
             color: #ffffff; /* White text */
             font-size: 55px;
@@ -70,9 +71,10 @@
         }
     
         img {
-            max-width: 80%;
+            max-width: 100%;
             height: auto; /* Set to auto for maintaining aspect ratio */
             border-radius: 10px;
+            padding: auto;
             margin: 10px auto; /* Center the image horizontally */
             display: block; /* Ensure margin: auto works properly */
         }
@@ -87,7 +89,7 @@
             width: 100%;        
         }
         canvas {
-            position: fixed;
+            position: absolute;
             top: 0;
             background-color: #121212;
             left: 0;
@@ -95,6 +97,32 @@
             z-index: -1; /* Move particles behind other elements */
         }
     
+        @media only screen and (max-width: 600px) {
+            /* Styles for mobile devices */
+            body {
+                margin: 10px;
+            }
+        
+            header {
+                padding: 20px;
+                font-size: 30px;
+            }
+        
+            footer {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            section {
+                width: 90%;
+                padding: 15px;
+            }
+        
+            img {
+                max-width: 100%;
+            }
+        }
+
     </style>
     
 
@@ -116,13 +144,13 @@
     </section>
 
     <section>
-        <h2>In 2021, astronomers revealed a new view of the giant black hole at the center of M87, showing what the colossal structure looks like in polarized light...</h2>
+        <h2>In 2021, astronomers revealed a new view of the giant black hole at the center of M87, showing what the colossal structure looks like in polarized light.</h2>
 
         <img src=https://cdn.mos.cms.futurecdn.net/HFpPPGTdiV5oaTXNzdmKMG-970-80.jpg alt="Polarized M87 Black Hole">
     </section>
 
     <section>
-        <h2>In May 2022, scientists revealed the historic first image of the supermassive black hole at the center of our galaxy — Sagittarius A*...</h2>
+        <h2>In May 2022, scientists revealed the historic first image of the supermassive black hole at the center of our galaxy — Sagittarius A*.</h2>
     
         <img src=https://cdn.mos.cms.futurecdn.net/F2qM9GBVYhTWeZ9W3C7Eij-650-80.jpg.webp alt="Sagittarius A* Image">
         </article>
