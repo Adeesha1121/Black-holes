@@ -52,10 +52,10 @@
             padding: 60px;
             text-align: center;
             color: #ffffff; /* White text */
-            font-size: 50px;
+            font-size: 55px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* White shadow */
             border-radius: 10px;
-            font-family: 'Segoe UI',bold,
+            font-family: Tahoma, sans-serif;
         }
     
         section {
@@ -86,8 +86,14 @@
             bottom: 0;
             width: 100%;        
         }
-    
-    
+        canvas {
+            position: fixed;
+            top: 0;
+            background-color: #121212;
+            left: 0;
+            display: block;
+            z-index: -1; /* Move particles behind other elements */
+        }
     
     </style>
     
@@ -95,7 +101,7 @@
 
 
 </head>
-
+<canvas id="particleCanvas"></canvas>
 
     <body>
         <header>Black Holes: Everything You Need to Know</header>
@@ -234,6 +240,84 @@
            &copy;By Adeesha 
 
        </footer>
+       <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+    
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    
+        const particles = [];
+    
+        class Particle {
+            constructor(x, y, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.speed = Math.random() * 2 + 1;
+                this.angle = Math.random() * Math.PI * 2;
+            }
+    
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+    
+            update() {
+                this.x += Math.cos(this.angle) * this.speed;
+                this.y += Math.sin(this.angle) * this.speed;
+                this.angle += 0.02;
+    
+                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                    this.angle = Math.PI - this.angle;
+                }
+    
+                if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                    this.angle = -this.angle;
+                }
+    
+                if (this.radius > 0.2) {
+                    this.radius -= 0.1;
+                }
+            }
+        }
+    
+        function createParticles(event) {
+            const mouseX = event.x;
+            const mouseY = event.y;
+    
+            for (let i = 0; i < 4; i++) {
+                particles.push(new Particle(mouseX, mouseY, Math.random() * 5 + 2, '#000000'));
+            }
+        }
+    
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+    
+                if (particles[i].radius <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+    
+
+
+            requestAnimationFrame(animateParticles);
+        }
+    
+        document.addEventListener('mousemove', createParticles);
+        animateParticles();
+    </script>
+    
+    
+
     </body>
     
     </html>
